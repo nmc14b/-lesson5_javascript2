@@ -7,8 +7,8 @@
       Project Title: Income Tax Calculator 
       Filename: taxCalculator.html
 
-      Author: 
-      Date:   
+      Author: Nathaniel Chin
+      Date: 6/18/2016  
    -->
    <meta charset="utf-8" />
    <meta id="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,50 +118,112 @@
          var income = document.getElementById("incomeInput").value;
          var status = document.getElementById("filingStatus").value;
          
-         
+         var arr = new Array(6);
          //Calculate the tax amount and tax rate based on the filing status and income
          //0-Single, 1-Married Jointly, 2-Married Separately, and 3-Head of Household
 
           if (status == 0) { 
+            arr = [9225, 37450, 90750, 189300, 411500, 413200];
              // Compute tax for single filers
-               if (income <= 9225){
+               if (income <= arr[0]){
                  tax = income * 0.10;
                  taxRate = 10;
                }//end of nested if
-               else if (income <= 37450) {
-                 tax = 9225 * 0.10 + (income - 9225) * 0.15;
+               else if (income <= arr[1]) {
+                 tax = arr[0] * 0.10 + (income - arr[0]) * 0.15;
                  taxRate = 15;
                }//end of else if
-               else if (income <= 90750) {
-                 tax = 9225 * 0.10 + (37450 - 9225) * 0.15 + (income - 37450) * 0.25;
+               else if (income <= arr[2]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 + (income - arr[1]) * 0.25;
                  taxRate = 25;
                } //end of else if
-               else if (income <= 189300) {
-                 tax = 9225 * 0.10 + (37450 - 9225) * 0.15 +
-                       (90750 - 37450) * 0.25 + (income - 90750) * 0.28;
+               else if (income <= arr[3]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                       (arr[2] - arr[1]) * 0.25 + (income - arr[2]) * 0.28;
                  taxRate = 28;
                }//end of else if
-               else if (income <= 411500) {
-                 tax = 9225 * 0.10 + (37450 - 9225) * 0.15 +
-                       (90750 - 37450) * 0.25 + (189300 - 90750) * 0.28 +
-                       (income - 189300) * 0.33;
+               else if (income <= arr[4]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                       (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                       (income - arr[3]) * 0.33;
                  taxRate = 33;
                }//end of else if
-               else if (income <= 413200) {
-                  tax = 9225 * 0.10 + (37450 - 9225) * 0.15 +
-                        (90750 - 37450) * 0.25 + (189300 - 90750) * 0.28 +
-                        (411500 - 189300) * 0.33 + (income - 411500) * 0.35;
+               else if (income <= arr[5]) {
+                  tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                        (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                        (arr[4] - arr[3]) * 0.33 + (income - arr[4]) * 0.35;
                   taxRate = 35;
                }//end of else if
                else {
-                  tax = 9225 * 0.10 + (37450 - 9225) * 0.15 +
-                        (90750 - 37450) * 0.25 + (189300 - 90750) * 0.28 +
-                        (411500 - 189300) * 0.33 + (413200 - 411500 ) * 0.35 + (income - 413200) * .396;
+                  tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                        (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                        (arr[4] - arr[3]) * 0.33 + (arr[5] - arr[4] ) * 0.35 + (income - arr[5]) * .396;
                   taxRate = 39.6;
                }//end of else
           }//end of single filer calculation
           
           else if(status == 1) {
+              /*
+              var num = income;
+              //var sum = 0;
+              
+              if (num <= 18450) {
+                  taxRate = 10;
+                  tax = num * (taxRate / 100);
+              }
+              
+              while (num > 0) {
+                  var tb = 18450;
+                  tax += tb * (taxRate / 100);
+                  num -= 18450;
+              }
+              if (num <= 18450) {
+                  taxRate = 10;
+                  tax = num * (taxRate / 100);
+              }
+              else if(num >= 18450) {
+                  tax += 18450 * (taxRate / 100);
+                    num -= 18450;
+                  if (num <= 74900)
+              }
+              */
+              arr = [18450, 74900, 151200, 230450, 411500, 464850];
+               // Compute tax for married-jointly filers
+               if (income <= arr[0]){
+                 tax = income * 0.10;
+                 taxRate = 10;
+               }//end of nested if
+               else if (income <= arr[1]) {
+                 tax = arr[0] * 0.10 + (income - arr[0]) * 0.15;
+                 taxRate = 15;
+               }//end of else if
+               else if (income <= arr[2]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 + (income - arr[1]) * 0.25;
+                 taxRate = 25;
+               } //end of else if
+               else if (income <= arr[3]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                       (arr[2] - arr[1]) * 0.25 + (income - arr[2]) * 0.28;
+                 taxRate = 28;
+               }//end of else if
+               else if (income <= arr[4]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                       (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                       (income - arr[3]) * 0.33;
+                 taxRate = 33;
+               }//end of else if
+               else if (income <= arr[5]) {
+                  tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                        (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                        (arr[4] - arr[3]) * 0.33 + (income - arr[4]) * 0.35;
+                  taxRate = 35;
+               }//end of else if
+               else {
+                  tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                        (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                        (arr[4] - arr[3]) * 0.33 + (arr[5] - arr[4] ) * 0.35 + (income - arr[5]) * .396;
+                  taxRate = 39.6;
+               }//end of else
                  /*******************************************************************************
                   * Task 1:  Compute the tax for users' who file as "Married Jointly".  Also,
                   *          set (or initialize) the tax rate for each bracket.  Refer 
@@ -179,6 +241,43 @@
           }//end of married file jointly calculation
           
           else if(status == 2) {
+            arr = [9225, 37450, 75600, 115225, 205750, 232425];
+              // Compute tax for married-jointly filers
+               if (income <= arr[0]){
+                 tax = income * 0.10;
+                 taxRate = 10;
+               }//end of nested if
+               else if (income <= arr[1]) {
+                 tax = arr[0] * 0.10 + (income - arr[0]) * 0.15;
+                 taxRate = 15;
+               }//end of else if
+               else if (income <= arr[2]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 + (income - arr[1]) * 0.25;
+                 taxRate = 25;
+               } //end of else if
+               else if (income <= arr[3]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                       (arr[2] - arr[1]) * 0.25 + (income - arr[2]) * 0.28;
+                 taxRate = 28;
+               }//end of else if
+               else if (income <= arr[4]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                       (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                       (income - arr[3]) * 0.33;
+                 taxRate = 33;
+               }//end of else if
+               else if (income <= arr[5]) {
+                  tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                        (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                        (arr[4] - arr[3]) * 0.33 + (income - arr[4]) * 0.35;
+                  taxRate = 35;
+               }//end of else if
+               else {
+                  tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                        (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                        (arr[4] - arr[3]) * 0.33 + (arr[5] - arr[4] ) * 0.35 + (income - arr[5]) * .396;
+                  taxRate = 39.6;
+               }//end of else
                  /*******************************************************************************
                   * Task 2:  Compute the tax for users' who file as "Married Separately".  Also,
                   *          set (or initialize) the tax rate for each bracket. Refer 
@@ -196,6 +295,43 @@
           }//end of married file separately calculation
           
           else if(status == 3) {
+            arr = [13150, 50200, 129600, 209850, 411500, 439000];
+              // Compute tax for married-jointly filers
+               if (income <= arr[0]){
+                 tax = income * 0.10;
+                 taxRate = 10;
+               }//end of nested if
+               else if (income <= arr[1]) {
+                 tax = arr[0] * 0.10 + (income - arr[0]) * 0.15;
+                 taxRate = 15;
+               }//end of else if
+               else if (income <= arr[2]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 + (income - arr[1]) * 0.25;
+                 taxRate = 25;
+               } //end of else if
+               else if (income <= arr[3]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                       (arr[2] - arr[1]) * 0.25 + (income - arr[2]) * 0.28;
+                 taxRate = 28;
+               }//end of else if
+               else if (income <= arr[4]) {
+                 tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                       (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                       (income - arr[3]) * 0.33;
+                 taxRate = 33;
+               }//end of else if
+               else if (income <= arr[5]) {
+                  tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                        (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                        (arr[4] - arr[3]) * 0.33 + (income - arr[4]) * 0.35;
+                  taxRate = 35;
+               }//end of else if
+               else {
+                  tax = arr[0] * 0.10 + (arr[1] - arr[0]) * 0.15 +
+                        (arr[2] - arr[1]) * 0.25 + (arr[3] - arr[2]) * 0.28 +
+                        (arr[4] - arr[3]) * 0.33 + (arr[5] - arr[4] ) * 0.35 + (income - arr[5]) * .396;
+                  taxRate = 39.6;
+               }//end of else
                  /*******************************************************************************
                   * Task 3:  Compute the tax for users' who file as "Head of Household".  Also,
                   *          set (or initialize) the tax rate for each bracket. Refer 
@@ -262,6 +398,9 @@
               //This code resets the dropdown box to the "Single" filer status.
               document.getElementById("filingStatus").selectedIndex = 0;
               
+              document.getElementById("taxEstimate").innerHTML = " ";
+          
+              document.getElementById("taxBracket").innerHTML = " ";
 
 
       }//end of clearButton function
